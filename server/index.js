@@ -1,9 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const OpenAI = require('openai');
-const { Models } = require('openai/resources/models.js');
-const { Stream } = require('openai/core/streaming.js');
+const { pipeline } = require('@xenova/transformers');
 
 dotenv.config();
 
@@ -11,10 +9,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-//Connecting the server to the OpenAI
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-});
+let extractor;
+
+//Load the Hugging Face model pipeline
+(async () => {
+    extractor = await pipeline('text2text-generation', 'Xenova/t5-small');
+    console.log('Hugging Face model loaded');
+})();
 
 //Creating a POST endpoint
 app.post('/generate-keywords', async (req, res) => {
@@ -23,20 +24,22 @@ app.post('/generate-keywords', async (req, res) => {
         return res.status(400).json({ error: 'Job description is required' });
     }
 
+    //Prompting the model to extract keywords
     try {
-        const response = await openai.responses.create({
-            model: "gpt-4.1",
-            input: "Generate a list of keywords from the following job description:\n\n" + jobDescription
+        const prompt = `Extract relevant keywords from this job description that I can add to my resume to increase its ats score: \n${jobDescription}`;
+        const result = await extractor(prompt, {
+            max_new_tokens: 50
         });
 
-        const keywords = response.data.choices[0].message.content
-            .split('\n')
-            .map(line => line.replace(/^\d+[\).\s]?/, '').trim())
+        const keywordsText = result[0].generated_text;
+        const keywords = keywordsText
+            .split(',')
+            .map(k => k.trim())
             .filter(Boolean);
 
         res.json({ keywords });
     } catch (error) {
-        console.error('OpenAI API error:', error);
+        console.error('Hugging Face Error:', error);
         res.status(500).json({ error: 'Failed to generate keywords' });
     }
 });
