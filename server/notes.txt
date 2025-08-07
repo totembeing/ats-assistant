@@ -1,0 +1,15 @@
+Backend Dependencies:
+    express: to build the server
+    cors: to allow your React app to talk to the backend
+    dotenv: to safely store API keys
+    openai: the official OpenAI SDK
+
+
+server\
+|----index.js   -> main backend code
+|----.env       -> API keys
+
+
+
+Problems I have been facing while building this project:
+|--- Insufficient Quota for Open AI, have to look for a free alternative 
