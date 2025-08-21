@@ -1,7 +1,7 @@
-const express = require('express');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const { pipeline } = require('@xenova/transformers');
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import { pipeline } from '@huggingface/transformers';
 
 dotenv.config();
 
@@ -11,9 +11,10 @@ app.use(express.json());
 
 let extractor;
 
-//Load the Hugging Face model pipeline
+//Load the Hugging Face model pipeline using an Immediately Invoked Function Expression (IIFE)
 (async () => {
-    extractor = await pipeline('text2text-generation', 'Xenova/t5-small');
+    //even with transformers supported model, error occurs while using text-generation instead of text2text-generation
+    extractor = await pipeline('text-generation', 'HuggingFaceTB/SmolLM2-360M-Instruct'); //Changed from 'Xenova/t5-small' to 'Xenova/flan-t5-base' and further
     console.log('Hugging Face model loaded');
 })();
 
@@ -26,18 +27,19 @@ app.post('/generate-keywords', async (req, res) => {
 
     //Prompting the model to extract keywords
     try {
-        const prompt = `Extract relevant keywords from this job description that I can add to my resume to increase its ats score: \n${jobDescription}`;
+        const prompt = `Extract a list of relevant technical keywords from this job description for ATS optimization.
+        The output should strictly comprise only of the keywords for the given job description: \n${jobDescription}.`;
         const result = await extractor(prompt, {
             max_new_tokens: 50
         });
 
         const keywordsText = result[0].generated_text;
-        const keywords = keywordsText
-            .split(',')
-            .map(k => k.trim())
-            .filter(Boolean);
+        //const keywords = keywordsText
+        //    .split(',')
+        //    .map(k => k.trim())
+        //    .filter(Boolean);
 
-        res.json({ keywords });
+        res.json({ keywordsText });
     } catch (error) {
         console.error('Hugging Face Error:', error);
         res.status(500).json({ error: 'Failed to generate keywords' });

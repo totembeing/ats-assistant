@@ -1,7 +1,10 @@
 import { useState } from "react";
 
 function App() {
+  //state variable named text default to an empty string
   const [text, setText] = useState("");
+
+  //state variable named keywords default to an empty array
   const [keywords, setKeywords] = useState([]);
 
   const handleClick = async () => {
@@ -11,8 +14,11 @@ function App() {
       body: JSON.stringify({ jobDescription: text }),
     });
 
+    //Not able to get an appropriate response from the server
+    console.log('button clicked');
     const data = await response.json();
-    setKeywords(data.keywords || []);
+    setKeywords(data.keywordsText || []); //Changed from data.keywords to data.keywordsText
+    console.log('Keywords generated:', keywords);
   };
 
   return (
@@ -32,15 +38,7 @@ function App() {
 
       <div style={{ flex: 1, padding: '20px', background: '#fff' }}>
         <h2>Suggested Keywords</h2>
-        {keywords.length > 0 ? (
-          <ul>
-            {keywords.map((word, idx) => (
-              <li key={idx}>{word}</li>
-            ))}
-          </ul>
-        ) : (
-          <p>Keywords will appear here.</p>
-        )}
+        <p>{keywords}</p>
       </div>
     </div>
   );

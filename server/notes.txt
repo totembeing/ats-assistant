@@ -12,11 +12,21 @@ server\
 
 
 Problems I have been facing while building this project:
-|--- Insufficient Quota for Open AI, have to look for a free alternative 
+|--- Insufficient Quota for Open AI, have to look for a free alternative (Using a Hugging Face T5 small model)
+|--- Running out of provided memory on Render while using Hugging Face T5 small model (Running it locally on my device for now)
+|--- Improving the response from model
+|--- Not receiving any output even when button is clicked (solved it, still have to figure out how)
+|--- The AI Model is too dumb to give an appropriate response (solved it using a better version of t5 model: flan-t5-base)
+|--- Had to find a better model supported by transformers.js (HuggingFaceTB/SmolLM2-360M-Instruct)
+|--- Wondering how I can run the model on my GPU instead of CPU
 
 New stuff I did in this project:
 |--- Hosting backend on free service to hear to requests from Frontend hosted on GitHub Pages
 |--- Hosting the backend on Render 
 |--- Using Hugging Face Inference API instead of OpenAI API because it is free of cost 
 |--- Using T5 model (Xenova/t5-small) capable of performing text2text (model wil run on render)
+|--- Changed all the require statements to import because @xenova/transformers is ES Module
+|--- Trying to use openai/gpt-oss-20b from Hugging Face (failed)
+|--- Using HuggingFaceTB/SmolLM2-360M-Instruct (better than Xenova/t5)
+|-- Opened up task manger to monitor CPU usage while execution (100% for 3-4s)
 
