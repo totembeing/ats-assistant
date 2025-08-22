@@ -26,8 +26,8 @@ jobs:
       - name: npm install, build, and test
         run: |
           npm install
-          npm run build --if-present
-          npm run test --if-present
+          npm run build --if-present 
+        #Removed npm run test because there is no test for backend  
         working-directory: server #Added a working directory to run the build commands in
 
       - name: Upload artifact for deployment job
@@ -65,4 +65,5 @@ jobs:
           package: .
 
           
+
 
