@@ -18,7 +18,9 @@ Problems I have been facing while building this project:
 |--- Not receiving any output even when button is clicked (solved it, still have to figure out how)
 |--- The AI Model is too dumb to give an appropriate response (solved it using a better version of t5 model: flan-t5-base)
 |--- Had to find a better model supported by transformers.js (HuggingFaceTB/SmolLM2-360M-Instruct)
-|--- Wondering how I can run the model on my GPU instead of CPU
+|--- Wondering how I can run the model on my GPU instead of CPU (still haven't figured that out yet)
+|--- Backend hosting (thinking about Azure) (wtf is GitHub Actions Workflow)
+|--- Error while building and deploying Node.js app to Azure Web App
 
 New stuff I did in this project:
 |--- Hosting backend on free service to hear to requests from Frontend hosted on GitHub Pages
@@ -29,4 +31,5 @@ New stuff I did in this project:
 |--- Trying to use openai/gpt-oss-20b from Hugging Face (failed)
 |--- Using HuggingFaceTB/SmolLM2-360M-Instruct (better than Xenova/t5)
 |-- Opened up task manger to monitor CPU usage while execution (100% for 3-4s)
+|--- Using gh-pages library to host React frontend 
 

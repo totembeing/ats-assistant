@@ -8,7 +8,7 @@ function App() {
   const [keywords, setKeywords] = useState([]);
 
   const handleClick = async () => {
-    const response = await fetch('http://localhost:5000/generate-keywords', {
+    const response = await fetch('https://ats-assistant-backend-headfscrhybqgzcz.canadacentral-01.azurewebsites.net/generate-keywords', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({ jobDescription: text }),
