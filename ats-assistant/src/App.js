@@ -1,5 +1,5 @@
 import './App.css'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   //state variable named text default to an empty string
@@ -7,6 +7,12 @@ function App() {
 
   //state variable named keywords default to an empty array
   const [keywords, setKeywords] = useState([]);
+
+  useEffect(() => {
+    if (text.trim() === "") {
+      setKeywords([]);
+    }
+  }, [text]);
 
   const handleClick = async () => {
     const response = await fetch('http://localhost:5000/generate-keywords', {
