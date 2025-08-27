@@ -6,9 +6,7 @@ import { pipeline } from '@huggingface/transformers';
 dotenv.config();
 
 const app = express();
-app.use(cors({
-    origin: 'https://totembeing.github.io' // Adjust this to your frontend's origin
-}));
+app.use(cors({origin: 'http://localhost:3000'}));
 app.use(express.json());
 
 let extractor;
@@ -16,7 +14,7 @@ let extractor;
 //Load the Hugging Face model pipeline using an Immediately Invoked Function Expression (IIFE)
 (async () => {
     //even with transformers supported model, error occurs while using text-generation instead of text2text-generation
-    extractor = await pipeline('text-generation', 'HuggingFaceTB/SmolLM2-360M-Instruct'); //Changed from 'Xenova/t5-small' to 'Xenova/flan-t5-base' and further
+    extractor = await pipeline('text-generation', 'HuggingFaceTB/SmolLM2-1.7B-Instruct'); //Changed from 'Xenova/t5-small' to 'Xenova/flan-t5-base' and further
     console.log('Hugging Face model loaded');
 })();
 
@@ -29,10 +27,9 @@ app.post('/generate-keywords', async (req, res) => {
 
     //Prompting the model to extract keywords
     try {
-        const prompt = `Extract a list of relevant technical keywords from this job description for ATS optimization.
-        The output should strictly comprise only of the keywords for the given job description: \n${jobDescription}.`;
+        const prompt = `Extract a list of relevant technical keywords from this job description for ATS optimization: \n${jobDescription}.`;
         const result = await extractor(prompt, {
-            max_new_tokens: 50
+            max_new_tokens: 70
         });
 
         const keywordsText = result[0].generated_text;

@@ -21,6 +21,7 @@ Problems I have been facing while building this project:
 |--- Wondering how I can run the model on my GPU instead of CPU (still haven't figured that out yet)
 |--- Backend hosting (thinking about Azure) (wtf is GitHub Actions Workflow)
 |--- Error while building and deploying Node.js app to Azure Web App (./server -> server | Commenting out the test code from workflow file)
+|--- Still facing some problem (could be the limited resources allocated to Web App Service)
 
 
 New stuff I did in this project:
@@ -34,3 +35,17 @@ New stuff I did in this project:
 |-- Opened up task manger to monitor CPU usage while execution (100% for 3-4s)
 |--- Using gh-pages library to host React frontend 
 
+
+
+
+ATS-Assistant — React Web App (Frontend & Backend)
+
+Developed a React web app leveraging Hugging Face AI to extract ATS-optimized technical keywords from job descriptions.
+
+Built a Node.js/Express backend with a text-generation pipeline, handling real-time AI requests and managing CORS for frontend integration.
+
+Implemented dynamic state management in React to capture user input and display generated keywords, enhancing UX.
+
+Hosted frontend on GitHub Pages and backend on Render, optimizing model choice (T5 variants) for performance and response quality.
+
+Troubleshot API integration, memory usage, and model limitations, ensuring reliable AI-powered keyword generation.

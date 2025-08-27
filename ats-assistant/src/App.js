@@ -1,3 +1,4 @@
+import './App.css'
 import { useState } from "react";
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
   const [keywords, setKeywords] = useState([]);
 
   const handleClick = async () => {
-    const response = await fetch('http://localhost:5000', {
+    const response = await fetch('http://localhost:5000/generate-keywords', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({ jobDescription: text }),
@@ -22,23 +23,41 @@ function App() {
   };
 
   return (
-    <div style={{ display: 'flex', height: '100vh' }}>
-      <div style={{ flex: 1, padding: '20px', background: '#f0f0f0' }}>
-        <h2>Paste Job Description</h2>
-        <textarea
-          style={{ width: '100%', height: '300px' }}
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder="Paste here..."
-        />
-        <button onClick={handleClick} style={{ marginTop: '10px' }}>
-          Generate Keywords
-        </button>
-      </div>
+    <div style={{ display: 'flex', height: '100vh', background: '#22242B', backgroundImage: 'radial-gradient(#555 1px, transparent 1px)', backgroundSize: '20px 20px', flexDirection: 'column'}}>
+      <header style={{display: 'flex', height: '10%', alignItems: 'center', justifyContent: 'center', background: '#22242B', borderBottom: '1px solid #444'}}>
+        <nav style={{display: 'flex', width: '95%'}}>
+          <h1 style={{color: '#FFFFFF', flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>ATS-Assistant</h1>
+          <div style={{flex: 3, display: 'flex', justifyContent: 'space-around', alignItems: 'center'}}>
+            <div style={{display: 'flex', gap: '2rem'}}>
+              <a href="#" style={{color: '#FFFFFF'}}>Home</a>
+              <a href="#" style={{color: '#FFFFFF'}}>About</a>
+              <a href="#" style={{color: '#FFFFFF'}}>Contact</a>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div style={{ display: 'flex', height: '90%', background: 'transparent'}}>
+        <div style={{ flex: 1, padding: '20px', background: 'transparent', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+          <h2 style={{color: '#FFFFFF'}}>Paste Job Description</h2>
+          <textarea
+            className= 'inputTextArea'
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="Paste here..."
+          />
+          <button onClick={handleClick} style={{ marginTop: '10px' }}>
+            Generate Keywords
+          </button>
+        </div>
 
-      <div style={{ flex: 1, padding: '20px', background: '#fff' }}>
-        <h2>Suggested Keywords</h2>
-        <p>{keywords}</p>
+        <div style={{ flex: 1, padding: '20px', background: '#22242B', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+          <h2 style={{color: '#FFFFFF'}}>Suggested Keywords</h2>
+          <textarea 
+            className= 'outputTextArea' 
+            value= {keywords} 
+            readOnly
+          />
+        </div>
       </div>
     </div>
   );
