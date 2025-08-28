@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ats-assistant/static/css/main.e6c13ad2.css",
-    "main.js": "/ats-assistant/static/js/main.371b2b6d.js",
+    "main.css": "/ats-assistant/static/css/main.da0009ba.css",
+    "main.js": "/ats-assistant/static/js/main.c8c8418b.js",
     "static/js/453.bde8a1b6.chunk.js": "/ats-assistant/static/js/453.bde8a1b6.chunk.js",
     "index.html": "/ats-assistant/index.html",
-    "main.e6c13ad2.css.map": "/ats-assistant/static/css/main.e6c13ad2.css.map",
-    "main.371b2b6d.js.map": "/ats-assistant/static/js/main.371b2b6d.js.map",
+    "main.da0009ba.css.map": "/ats-assistant/static/css/main.da0009ba.css.map",
+    "main.c8c8418b.js.map": "/ats-assistant/static/js/main.c8c8418b.js.map",
     "453.bde8a1b6.chunk.js.map": "/ats-assistant/static/js/453.bde8a1b6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e6c13ad2.css",
-    "static/js/main.371b2b6d.js"
+    "static/css/main.da0009ba.css",
+    "static/js/main.c8c8418b.js"
   ]
 }
