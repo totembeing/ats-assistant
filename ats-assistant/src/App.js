@@ -14,7 +14,7 @@ function App() {
     }
   }, [text]);
 
-  const handleClick = async () => {
+  const handleClick1 = async () => {
     const response = await fetch('http://localhost:5000/generate-keywords', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -27,6 +27,16 @@ function App() {
     setKeywords(data.keywordsText || []); //Changed from data.keywords to data.keywordsText
     console.log('Keywords generated:', keywords);
   };
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(keywords);
+      alert('Keywords copied to clipboard!');
+    }catch (err) {
+      console.error('Failed to copy keywords: ', err);
+      alert('Failed to copy keywords');
+    }
+  }
 
   return (
     <div style={{ display: 'flex', height: '100vh', background: '#22242B', backgroundImage: 'radial-gradient(#555 1px, transparent 1px)', backgroundSize: '20px 20px', flexDirection: 'column'}}>
@@ -43,7 +53,7 @@ function App() {
         </nav>
       </header>
       <div style={{ display: 'flex', height: '90%', background: 'transparent'}}>
-        <div style={{ flex: 1, padding: '20px', background: 'transparent', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        <div className= 'inputContainer' >
           <h2 style={{color: '#FFFFFF'}}>Paste Job Description</h2>
           <textarea
             className= 'inputTextArea'
@@ -51,18 +61,21 @@ function App() {
             onChange={(e) => setText(e.target.value)}
             placeholder="Paste here..."
           />
-          <button onClick={handleClick} style={{ marginTop: '10px' }}>
+          <button onClick={handleClick1} style={{ marginTop: '10px' }}>
             Generate Keywords
           </button>
         </div>
 
-        <div style={{ flex: 1, padding: '20px', background: '#22242B', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        <div className='outputContainer' >
           <h2 style={{color: '#FFFFFF'}}>Suggested Keywords</h2>
           <textarea 
             className= 'outputTextArea' 
             value= {keywords} 
             readOnly
           />
+          <button onClick={copyToClipboard} style={{ marginTop: '10px' }}>
+            Copy to Clipboard
+          </button>
         </div>
       </div>
     </div>

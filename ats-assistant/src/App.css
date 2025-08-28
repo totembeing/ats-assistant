@@ -106,6 +106,34 @@ a {
 
 /*
 ====================================================================
+INPUT & OUTPUT CONTAINERS
+====================================================================
+*/
+
+.inputContainer {
+  flex: 1;
+  display: flex;
+  padding: 20px;
+  background: transparent;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.outputContainer {
+  flex: 1;
+  display: flex;
+  padding: 20px;
+  background: transparent;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/*
+====================================================================
 INPUT & OUTPUT TEXT AREAS
 ====================================================================
 */
