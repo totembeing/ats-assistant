@@ -6,7 +6,7 @@ import { pipeline } from '@huggingface/transformers';
 dotenv.config();
 
 const app = express();
-app.use(cors({origin: 'http://localhost:3000'}));
+app.use(cors({origin: ['http://localhost:3000', 'https://totembeing.github.io/ats-assistant']}));
 app.use(express.json());
 
 let extractor;
@@ -45,7 +45,8 @@ app.post('/generate-keywords', async (req, res) => {
     }
 });
 
-const PORT = 5000;
+//To get the Azure's dynamically assigned PORT if it is not 5000 (without this the backend won't start properly on Azure)
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server is running on PORT: ${PORT}`);
 });
