@@ -15,7 +15,7 @@ function App() {
   }, [text]);
 
   const handleClick1 = async () => {
-    const response = await fetch('https://ats-assistant-backend-headfscrhybqgzcz.canadacentral-01.azurewebsites.net/generate-keywords', {
+    const response = await fetch('ats-assistant-backend-headfscrhybqgzcz.canadacentral-01.azurewebsites.net', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({ jobDescription: text }),
