@@ -6,7 +6,11 @@ import { pipeline } from '@huggingface/transformers';
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: 'https://totembeing.github.io/ats-assistant',
+    methods: ['POST', 'GET'],
+    allowedHeaders: ['Content-Type']
+}));
 app.use(express.json());
 
 let extractor;
