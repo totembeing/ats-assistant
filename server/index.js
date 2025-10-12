@@ -7,7 +7,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors({
-    origin: 'https://totembeing.github.io/ats-assistant',
+    origin: ['https://totembeing.github.io/ats-assistant', 'http://localhost:3000'],
     methods: ['POST', 'GET'],
     allowedHeaders: ['Content-Type']
 }));
