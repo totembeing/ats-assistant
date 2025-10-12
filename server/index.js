@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { pipeline } from '@huggingface/transformers';
+import { AzureOpenAI } from 'openai';
 
 dotenv.config();
 
@@ -13,14 +13,14 @@ app.use(cors({
 }));
 app.use(express.json());
 
-let extractor;
+// Initialize Azure OpenAI client
+const azureOpenAI = new AzureOpenAI({
+    apiKey: process.env.AZURE_OPENAI_API_KEY,
+    endpoint: process.env.AZURE_OPENAI_ENDPOINT,
+    apiVersion: process.env.AZURE_OPENAI_API_VERSION || "2024-02-15-preview"
+});
 
-//Load the Hugging Face model pipeline using an Immediately Invoked Function Expression (IIFE)
-(async () => {
-    //even with transformers supported model, error occurs while using text-generation instead of text2text-generation
-    extractor = await pipeline('text-generation', 'HuggingFaceTB/SmolLM2-1.7B-Instruct'); //Changed from 'Xenova/t5-small' to 'Xenova/flan-t5-base' and further
-    console.log('Hugging Face model loaded');
-})();
+console.log('Azure OpenAI client initialized');
 
 //Creating a POST endpoint
 app.post('/generate-keywords', async (req, res) => {
@@ -29,22 +29,29 @@ app.post('/generate-keywords', async (req, res) => {
         return res.status(400).json({ error: 'Job description is required' });
     }
 
-    //Prompting the model to extract keywords
+    //Prompting the Azure OpenAI model to extract keywords
     try {
-        const prompt = `Extract a list of relevant technical keywords from this job description for ATS optimization: \n${jobDescription}.`;
-        const result = await extractor(prompt, {
-            max_new_tokens: 70
+        const completion = await azureOpenAI.chat.completions.create({
+            model: process.env.AZURE_OPENAI_DEPLOYMENT_NAME, // Your deployment name
+            messages: [
+                {
+                    role: "system",
+                    content: "You are an expert ATS (Applicant Tracking System) optimization assistant. Extract the most relevant technical keywords, skills, and qualifications from job descriptions that candidates should include in their resumes."
+                },
+                {
+                    role: "user",
+                    content: `Extract a list of relevant technical keywords from this job description for ATS optimization:\n\n${jobDescription}\n\nProvide the keywords as a comma-separated list.`
+                }
+            ],
+            max_tokens: 150,
+            temperature: 0.3
         });
 
-        const keywordsText = result[0].generated_text;
-        //const keywords = keywordsText
-        //    .split(',')
-        //    .map(k => k.trim())
-        //    .filter(Boolean);
+        const keywordsText = completion.choices[0].message.content;
 
         res.json({ keywordsText });
     } catch (error) {
-        console.error('Hugging Face Error:', error);
+        console.error('Azure OpenAI Error:', error);
         res.status(500).json({ error: 'Failed to generate keywords' });
     }
 });
