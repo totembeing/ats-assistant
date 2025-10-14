@@ -89,7 +89,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Vaibhav Narula**
 - GitHub: [@totembeing](https://github.com/totembeing)
-- LinkedIn: [Your LinkedIn Profile](https://www.linkedin.com/in/vaibhav-narula-4bb64b28a)
+- LinkedIn: [Vaibhav Narula](https://www.linkedin.com/in/vaibhav-narula-4bb64b28a)
 
 ---
 
