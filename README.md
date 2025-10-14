@@ -10,17 +10,11 @@ A full-stack web application that leverages AI to extract ATS-optimized keywords
 
 Job seekers often struggle with ATS systems that filter resumes based on keyword matching. This application solves that problem by intelligently analyzing job descriptions and extracting the most relevant technical keywords, skills, and qualifications that candidates should include in their resumes.
 
-### Key Problem Solved
-- **Challenge**: 75% of resumes never reach human recruiters due to ATS filtering
-- **Solution**: AI-powered keyword extraction ensures resume optimization for ATS systems
-- **Impact**: Increased interview callback rates through strategic keyword inclusion
-
 ## ✨ Features
 
 - **Intelligent Keyword Extraction**: Uses Azure OpenAI GPT-3.5 Turbo for advanced natural language processing
 - **Real-time Processing**: Instant keyword generation from job descriptions
 - **Copy-to-Clipboard**: One-click functionality for easy resume integration  
-- **Clean UI/UX**: Intuitive interface with professional dark theme
 - **Cross-Platform**: Responsive design works on desktop and mobile
 - **Production Ready**: Deployed with enterprise-grade cloud infrastructure
 
@@ -38,7 +32,7 @@ Job seekers often struggle with ATS systems that filter resumes based on keyword
 - **CORS** - Cross-origin resource sharing configuration
 
 ### Development & Deployment
-- **Git/GitHub** - Version control and CI/CD
+- **Git/GitHub** - Version control 
 - **Environment Variables** - Secure API key management
 - **Azure Cloud** - Production infrastructure
 
@@ -54,8 +48,6 @@ Job seekers often struggle with ATS systems that filter resumes based on keyword
 
 ## 🧠 Technical Evolution
 
-This project showcases technical decision-making and adaptation:
-
 1. **Initial Approach**: Started with Hugging Face Transformers (T5, SmolLM models)
 2. **Challenge**: Insufficient model performance and computational limitations  
 3. **Solution**: Migrated to Azure OpenAI Service for superior accuracy and reliability
@@ -65,94 +57,6 @@ This project showcases technical decision-making and adaptation:
 - **Model Selection**: Chose GPT-3.5 Turbo for optimal cost-performance balance
 - **Prompt Engineering**: Iterated on system/user prompts for maximum extraction accuracy
 - **Cloud Architecture**: Selected Azure App Service for scalability and integration benefits
-
-## 📋 Installation & Setup
-
-### Prerequisites
-- Node.js 18+ and npm
-- Azure OpenAI Service account
-- Git
-
-### Backend Setup
-```bash
-# Clone repository
-git clone https://github.com/totembeing/ats-assistant.git
-cd ats-assistant/server
-
-# Install dependencies  
-npm install
-
-# Configure environment variables
-cp .env.example .env
-# Add your Azure OpenAI credentials to .env
-
-# Start server
-npm start
-```
-
-### Frontend Setup
-```bash
-# Navigate to frontend directory
-cd ../ats-assistant
-
-# Install dependencies
-npm install
-
-# Start development server
-npm start
-
-# Build for production
-npm run build
-
-# Deploy to GitHub Pages
-npm run deploy
-```
-
-### Environment Variables
-```env
-AZURE_OPENAI_API_KEY=your_api_key_here
-AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com/
-AZURE_OPENAI_DEPLOYMENT_NAME=your_deployment_name
-AZURE_OPENAI_API_VERSION=2024-02-15-preview
-```
-
-## 🧪 Testing & Validation
-
-- **Test Data**: Validated with real job descriptions from Indeed, LinkedIn, and Glassdoor
-- **Model Performance**: Optimized prompts for consistent, relevant keyword extraction
-- **Error Handling**: Comprehensive error management for API failures and edge cases
-
-## 🚧 Development Challenges & Solutions
-
-### Challenge 1: Model Performance
-- **Problem**: Hugging Face models provided inconsistent results
-- **Solution**: Migrated to Azure OpenAI for enterprise-grade performance
-- **Learning**: Importance of model selection in production applications
-
-### Challenge 2: Azure Deployment  
-- **Problem**: Backend deployment failures due to environment configuration
-- **Solution**: Proper Linux environment setup and dependency management
-- **Learning**: Cloud deployment intricacies and debugging techniques
-
-### Challenge 3: Cross-Origin Requests
-- **Problem**: CORS errors between GitHub Pages and Azure backend
-- **Solution**: Implemented proper CORS configuration with multiple origins
-- **Learning**: Web security and cross-domain communication
-
-## 🔮 Future Enhancements
-
-- **Resume Analysis**: Upload and analyze existing resumes for keyword gaps
-- **Industry Specialization**: Tailored keyword extraction for specific sectors  
-- **Job Matching**: AI-powered job recommendation based on resume content
-- **Analytics Dashboard**: Track application success rates and keyword performance
-- **Bulk Processing**: Handle multiple job descriptions simultaneously
-
-## 📊 Project Impact
-
-- **Technical Skills Demonstrated**: Full-stack development, AI integration, cloud deployment
-- **Problem-Solving**: Overcame model limitations, deployment challenges, and optimization issues  
-- **Industry Relevance**: Addresses real pain point in job application process
-- **Scalability**: Built with production-ready architecture and cloud infrastructure
 
 ## 🔧 API Documentation
 
@@ -183,9 +87,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👨‍💻 Author
 
-**Your Name**
+**Vaibhav Narula**
 - GitHub: [@totembeing](https://github.com/totembeing)
-- LinkedIn: [Your LinkedIn Profile]
+- LinkedIn: [Your LinkedIn Profile](https://www.linkedin.com/in/vaibhav-narula-4bb64b28a)
 
 ---
 
