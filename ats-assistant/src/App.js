@@ -30,7 +30,7 @@ function App() {
     setStatus(null);
     
     try {
-      const response = await fetch('https://ats-assistant-backend-headfscrhybqgzcz.canadacentral-01.azurewebsites.net/generate-keywords', {
+      const response = await fetch(process.env.REACT_APP_AZURE_WEB_SERVICE_ENDPOINT, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ jobDescription: text }),
